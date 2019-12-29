@@ -23,6 +23,7 @@ module.exports = {
         name: `assets`,
       },
     },
+    `gatsby-plugin-mdx`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
