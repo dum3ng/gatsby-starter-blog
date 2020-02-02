@@ -10,9 +10,7 @@ class BlogIndex extends React.Component {
   render() {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges.filter(
-      p => !p.node.frontmatter.draft
-    )
+    const posts = data.allMdx.edges.filter(p => !p.node.frontmatter.draft)
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -53,7 +51,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           excerpt

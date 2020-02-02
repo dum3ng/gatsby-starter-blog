@@ -8,7 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       {
-        allMarkdownRemark(
+        allMdx(
           sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
         ) {
@@ -32,7 +32,7 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges.filter(
+    const posts = result.data.allMdx.edges.filter(
       e => !e.node.frontmatter.draft
     )
 
@@ -56,7 +56,7 @@ exports.createPages = ({ graphql, actions }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if ([`MarkdownRemark`, `Mdx`].includes(node.internal.type)) {
     const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,
