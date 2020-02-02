@@ -95,3 +95,13 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-blog)
 
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+1）放假期间什么时候回家的，乘坐交通工具；
+01/22, 郑州, 高铁
+2）在哪里过年的，春节有没外出？去过哪些地方？
+郑州, 夏邑
+3）计划什么时候返杭，计划乘坐什么交通工具返杭；
+01/30, 高铁
+4）目前有没有发烧，还有身体不适的其他症状。
+感冒中 🤧
+5）并且在抵达杭州的第一时间通知到 Serina，协调做好后续隔离期间的远程工
