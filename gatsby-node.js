@@ -14,12 +14,18 @@ exports.createPages = ({ graphql, actions }) => {
         ) {
           edges {
             node {
+              fileAbsolutePath
               fields {
                 slug
               }
               frontmatter {
                 title
                 draft
+              }
+              parent {
+                ... on File {
+                  sourceInstanceName
+                }
               }
             }
           }
@@ -32,14 +38,20 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     // Create blog posts pages.
-    const posts = result.data.allMdx.edges.filter(
-      e => !e.node.frontmatter.draft
-    )
+    const posts = result.data.allMdx.edges
+      .filter(e => !e.node.frontmatter.draft)
+      .filter(e => {
+        return e.node.parent.sourceInstanceName === 'blog'
+        // const rel = path.relative(
+        //   path.resolve(__dirname, 'content'),
+        //   e.node.fileAbsolutePath
+        // )
+        // return rekkl.startsWith('blog')
+      })
 
     posts.forEach((post, index) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1].node
       const next = index === 0 ? null : posts[index - 1].node
-      console.log(post.node.frontmatter.draft, post.node.frontmatter.title)
       createPage({
         path: post.node.fields.slug,
         component: blogPost,
@@ -57,6 +69,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if ([`MarkdownRemark`, `Mdx`].includes(node.internal.type)) {
+    console.log(node, getNode())
     const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,

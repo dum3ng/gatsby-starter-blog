@@ -30,9 +30,6 @@ function Bio() {
                 borderRadius: `50%`,
               }}
             />
-            <p>
-              前端工程师 宇宙漂流者
-            </p>
           </div>
         )
       }}

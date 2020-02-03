@@ -10,7 +10,9 @@ class BlogIndex extends React.Component {
   render() {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMdx.edges.filter(p => !p.node.frontmatter.draft)
+    const posts = data.allMdx.edges
+      .filter(p => !p.node.frontmatter.draft)
+      .filter(p => p.node.parent.sourceInstanceName === 'blog')
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -62,6 +64,11 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             draft
+          }
+          parent {
+            ... on File {
+              sourceInstanceName
+            }
           }
         }
       }
