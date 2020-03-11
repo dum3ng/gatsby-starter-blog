@@ -69,7 +69,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if ([`MarkdownRemark`, `Mdx`].includes(node.internal.type)) {
-    console.log(node, getNode())
     const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,
